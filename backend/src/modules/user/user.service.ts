@@ -1,27 +1,27 @@
 import config from "../../config";
 import { AppError } from "../../hooks/AppError";
+import { prisma } from "../../hooks/prisma";
 import { TUser } from "./user.interface";
-import { user } from "./user.model";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 
 async function createUser(data: TUser) {
   const email = data.email
-  const userExist = await user.findOne({ email });
+  const userExist = await prisma.user.findFirst({where: {email}});
 
   if (userExist) {
     throw new AppError(400, "User already exists");
   } else {
     data.password = await bcrypt.hash(data.password, 10);
     data.avatar = "dsf"
-    const result = await user.create(data);
+    const result = await prisma.user.create({ data });
     return result;
   }
 }
 
 async function signInUser(data: TUser) {
   const email = data.email;
-  const userExist = await user.findOne({ email });
+  const userExist = await prisma.user.findFirst({ where: { email } });
 
   if (!userExist) {
     throw new AppError(400, "User does not exist");
@@ -50,7 +50,7 @@ async function signInUser(data: TUser) {
 }
 
 async function userData(email: string) {
-  const userExist = await user.findOne({ email });
+  const userExist = await prisma.user.findFirst({ where: { email } });
   if (!userExist) {
     throw new AppError(400, "User does not exist");
   }
