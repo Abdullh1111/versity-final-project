@@ -25,4 +25,16 @@ model User {
   password  String
   avatar    String
   role      ROLE     @default(USER)
+  posts     Posts[]    
+}
+
+model Posts {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author    User     @relation(fields: [authorId], references: [id])
 }
