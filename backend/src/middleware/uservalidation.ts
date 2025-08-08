@@ -6,6 +6,7 @@ export const signupValidation = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(req.body);
   try {
     const validatedData =signupValidationSchema.parse(req.body);
     req.body = validatedData;
