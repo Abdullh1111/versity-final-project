@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to Dashboard</h2>
-    <p id="username"></p>
-    <button id="logoutBtn">Logout</button>
 
-    <h3>Your Tasks</h3>
-    <ul id="taskList"></ul>
+  <nav class="navbar">
+    <div class="user-info">
+      <img id="userAvatar" src="" alt="User Avatar" />
+      <span id="userFullName">User</span>
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </nav>
+
+  <div class="posts-container" id="postsContainer">
+    <h2>Your Posts</h2>
+    <!-- Posts will be appended here -->
   </div>
 
   <script src="js/dashboard.js"></script>
