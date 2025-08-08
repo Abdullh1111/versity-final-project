@@ -28,7 +28,7 @@ export const authorized = (
 
   try {
     const payload = jwt.verify(token as string, tokenSecret);
-    console.log(payload);
+    // console.log(payload);
     req.user = payload;
     next();
   } catch (err) {
