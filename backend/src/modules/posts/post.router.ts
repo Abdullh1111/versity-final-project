@@ -5,7 +5,7 @@ import { authorized } from "../../middleware/authorized";
 const router = Router();
 
 router.post("/",authorized, postController.create);
-router.get("/",authorized, postController.getAll);
+router.get("/", postController.getAll);
 router.get("/:id",authorized, postController.getById);
 router.put("/:id",authorized, postController.update);
 router.delete("/:id",authorized, postController.remove);

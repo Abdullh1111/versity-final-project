@@ -16,7 +16,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.use("/auth",userRouter)
-app.use("/posts", postsRoutes);
+app.use("/api/posts", postsRoutes);
 
 app.use(globalErrorHandler)
 

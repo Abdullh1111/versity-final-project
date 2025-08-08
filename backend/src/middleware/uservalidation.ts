@@ -9,7 +9,7 @@ export const signupValidation = async (
   console.log(req.body);
   try {
     const validatedData =signupValidationSchema.parse(req.body);
-    req.body = validatedData;
+    req.body = {...validatedData, ...req.body};
     next();
   } catch (error) {
     next(error);

@@ -3,19 +3,19 @@ import { TPost } from "./post.interfact";
 
 
 export const createPost = async (data: TPost) => {
-  return prisma.posts.create({ data });
+  return await prisma.posts.create({ data });
 };
 
 export const getAllPosts = async () => {
-  return prisma.posts.findMany({ include: { author: true } });
+  return await prisma.posts.findMany({ include: { author: true } });
 };
 
 export const getPostById = async (id: number) => {
-  return prisma.posts.findUnique({ where: { id }, include: { author: true } });
+  return await prisma.posts.findUnique({ where: { id }, include: { author: true } });
 };
 
 export const updatePost = async (id: number, data: Partial<TPost>) => {
-  return prisma.posts.update({ where: { id }, data });
+  return await prisma.posts.update({ where: { id }, data });
 };
 
 export const deletePost = async (id: number, userId: string) => {
@@ -28,7 +28,7 @@ export const deletePost = async (id: number, userId: string) => {
       throw new Error("You are not authorized to delete this post");
     }
 
-  const deletePost = prisma.posts.delete({ where: { id } });
+  const deletePost = await prisma.posts.delete({ where: { id } });
 
   return deletePost;
 };
